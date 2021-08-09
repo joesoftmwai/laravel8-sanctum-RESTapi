@@ -35,4 +35,23 @@ class AuthController extends Controller
         return response($response, 201); // 201 response for created
 
     }
+
+    public function logout(Request $request)
+    {
+
+        // loggin out in laravel 8
+        // Revoke all tokens...
+        // 1. $user->tokens()->delete();
+
+        // Revoke the token that was used to authenticate the current request...
+        // 2. $request->user()->currentAccessToken()->delete();
+
+        // Revoke a specific token...
+        // 3. $user->tokens()->where('id', $tokenId)->delete();
+
+        $request->user()->currentAccessToken()->delete();
+        return [
+            'message' => 'Logged out'
+        ];
+    }
 }
