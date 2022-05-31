@@ -9,7 +9,8 @@ use Illuminate\Support\Facades\Hash;
 class AuthController extends Controller
 {
 
-    public function login(Request $request) {
+    public function login(Request $request)
+    {
         // validate user
         $fields = $request->validate([
             'email' => 'required|email',
@@ -22,8 +23,8 @@ class AuthController extends Controller
         // check  password
         if (!$user || !Hash::check($fields['password'], $user->password)) {
             return response([
-                'message' => 'Please ensure you have entered correct email and password', 
-            ], 401); 
+                'message' => 'Please ensure you have entered correct email and password',
+            ], 401);
         }
 
         // generate token
@@ -70,7 +71,7 @@ class AuthController extends Controller
     public function logout(Request $request)
     {
 
-        // loggin out in laravel 8
+        // log out in laravel 8
         // Revoke all tokens...
         // 1. $user->tokens()->delete();
 
